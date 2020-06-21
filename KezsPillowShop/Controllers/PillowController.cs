@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using KezsPillowShop.Models;
+using KezsPillowShop.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KezsPillowShop.Controllers
@@ -20,7 +21,11 @@ namespace KezsPillowShop.Controllers
 
         public ViewResult List()
         {
-            return View(_pillowRepository.AllPillows);
+            PillowsListViewModel pillowsListVM = new PillowsListViewModel();
+            pillowsListVM.Pillows = _pillowRepository.AllPillows;
+            pillowsListVM.CurrentCategory = "Small Pillows";
+
+            return View(pillowsListVM);
         }
     }
 }
